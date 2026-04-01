@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>School ID Card Generator</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <h1>School <span>ID Card</span> Generator</h1>
+  <p class="subtitle">Sabhi details fill karein aur apna ID card generate karein</p>
+
+  <div class="layout">
+
+    <!-- ============ FORM PANEL ============ -->
+    <div class="form-panel">
+
+      <div class="form-section-title">👤 Student Information</div>
+
+      <label>Student Photo</label>
+      <div class="photo-upload-area" id="photoUploadArea">
+        <input type="file" accept="image/*" id="photoInput">
+        <div class="upload-icon">📷</div>
+        <div class="upload-text">Photo upload karein (click karein)</div>
+      </div>
+
+      <div>
+        <label>Student Name (with title)</label>
+        <input type="text" id="studentName" value="Miss. Avika Agrawal" placeholder="e.g. Miss. Avika Agrawal">
+      </div>
+      <div>
+        <label>Grade / Class</label>
+        <input type="text" id="grade" value="II" placeholder="e.g. II, 5th, X">
+      </div>
+
+      <div class="form-section-title">👨‍👩‍👧 Family & Contact</div>
+
+      <div>
+        <label>Father's Name</label>
+        <input type="text" id="fatherName" value="Mr. Ashish Agrawal" placeholder="Father ka naam">
+      </div>
+      <div>
+        <label>Date of Birth</label>
+        <input type="text" id="dob" value="22/05/2019" placeholder="DD/MM/YYYY">
+      </div>
+      <div>
+        <label>Contact Number</label>
+        <input type="tel" id="contact" value="8839506560" placeholder="Mobile number">
+      </div>
+      <div>
+        <label>Address</label>
+        <input type="text" id="address" value="Near Ayesha Traders, Barela" placeholder="Ghar ka address">
+      </div>
+
+
+
+      <button class="btn-download" onclick="downloadImage()">🖼️ Download as Image</button>
+
+    </div>
+    <!-- end form-panel -->
+
+    <!-- ============ CARD PREVIEW ============ -->
+    <div class="preview-panel">
+      <div class="preview-label">Live Preview</div>
+
+      <div class="id-card" id="idCard">
+
+        <!-- HEADER -->
+        <div class="card-header">
+          <div class="card-logo-placeholder" id="logoDisplay">
+            <img src="https://i.ibb.co/CpB57D5W/WGWS-logo.png"
+              style="width:100%;height:100%;border-radius:50%;object-fit:contain;"
+              onerror="this.parentElement.textContent='🏫'">
+          </div>
+          <div class="school-name-block">
+            <div class="school-name-big" id="cardSchoolBig">WISDOM</div>
+            <div class="school-tagline" id="cardSchoolFull">The Global World School</div>
+            <div class="cbse-inline">CBSE Affiliation: 3330552</div>
+          </div>
+        </div>
+
+        <!-- BODY -->
+        <div class="card-body">
+
+          <!-- Photo -->
+          <div class="card-photo-wrap" id="photoWrap">
+            <div class="card-photo-placeholder">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4
+                       7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6
+                       1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z" />
+              </svg>
+              Photo
+            </div>
+          </div>
+
+          <!-- Name -->
+          <div class="student-name" id="cardName">Miss. Avika Agrawal</div>
+
+          <!-- Grade -->
+          <div class="grade-label">Grade</div>
+          <div class="grade-badge" id="cardGrade">II</div>
+
+          <!-- Info rows -->
+          <div class="info-table">
+            <div class="info-row">
+              <span class="info-key">F. Name: -</span>
+              <span class="info-val" id="cardFather">Mr. Ashish Agrawal</span>
+            </div>
+            <div class="info-row">
+              <span class="info-key">D.O.B.: -</span>
+              <span class="info-val" id="cardDob">22/05/2019</span>
+            </div>
+            <div class="info-row">
+              <span class="info-key">Contact: -</span>
+              <span class="info-val" id="cardContact">8839506560</span>
+            </div>
+            <div class="info-row">
+              <span class="info-key">Address: -</span>
+              <span class="info-val dark" id="cardAddress">Near Ayesha Traders, Barela</span>
+            </div>
+          </div>
+
+          <div class="card-blob"></div>
+        </div>
+        <!-- end card-body -->
+
+        <!-- FOOTER -->
+        <div class="card-footer">
+          <div class="signature-block">
+            <div id="sigDisplay" style="height:0.6cm;display:flex;align-items:center;justify-content:center;">
+              <img src="https://i.ibb.co/5g37FhSB/Gemini-Generated-Image-df3l64df3l64df3l.png" class="sig-img" alt="Principal Signature"
+                style="height:0.6cm;object-fit:contain;"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+              <span style="font-family:cursive;font-size:0.55rem;color:#333;display:none;">Principal</span>
+            </div>
+            <div class="sig-label">Principal</div>
+          </div>
+        </div>
+
+      </div>
+      <!-- end id-card -->
+    </div>
+    <!-- end preview-panel -->
+
+  </div>
+  <!-- end layout -->
+
+  <!-- html2canvas for image download -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
